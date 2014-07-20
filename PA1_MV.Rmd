@@ -3,13 +3,29 @@
 
 # Updating the file
 
+
+
 ## Loading and preprocessing the data
+```{r}
+#getData <- read.csv(unzip("activity.zip"))
 
 
+```
+
+## Get and clean data
+```{r}
+getData<-read.csv("activity.csv", colClasses=c('numeric','Date','numeric'))
+goodData<-na.omit(getData)
+
+```
 
 ## What is mean total number of steps taken per day?
-
-
+```{r}
+daySteps<-aggregate(goodData$steps, by=list(goodData$date), sum)
+hist(daySteps$x, breaks=20, xlab="Steps", ylab="Days")
+mean(daySteps$x)
+median(daySteps$x)
+```
 
 ## What is the average daily activity pattern?
 
